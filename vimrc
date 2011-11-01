@@ -1,3 +1,9 @@
+colorschem wombat 
+
+if has("mac")
+    let $PATH = '/opt/local/bin:/opt/local/sbin'.$PATH
+endif
+
 " no vi compatibility
 set nocompatible
 
@@ -25,7 +31,7 @@ set backspace=2 " start,indent
 set nobackup " Do not write backup files to disk
 set noswapfile " Do not use swapfiles (they have trouble with large files)
 
-set wildignore+=*.png,*.jpg,*.gif,*.ai,*.jpeg,*.psd,*.swp,*.jar,*.zip,*.gem,.DS_Store,log/**,tmp/**,coverage/**,rdoc/**
+set wildignore+=*.bak,*.png,*.jpg,*.gif,*.ai,*.jpeg,*.psd,*.swp,*.jar,*.zip,*.gem,.DS_Store,log/**,tmp/**,coverage/**,rdoc/**
 
 " additional support for some file types
 autocmd BufRead *.html.erb set ft=eruby.html
@@ -69,15 +75,15 @@ map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 
 " NERDTree (Command-d / Leader-d)
 map <leader>d :NERDTreeToggle<CR>
-map <D-d> :NERDTreeToggle<CR>
+" map <D-d> :NERDTreeToggle<CR>
 map <leader>n :NERDTree<CR>
-" map <D-d> :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <D-d> :execute 'NERDTreeToggle ' . getcwd()<CR>
 " navigates nerdtree to the current file
-map <leader><S-d> :NERDTree %:p:h<CR> 
+map <leader><S-d> :NERDTree %:p:h<CR>
 
 " NERD Commenter Sucks balls. Use tComment instead!
-nmap <D-/> gc
-vmap <D-/> gcgv
+" nmap <D-/> gc
+" vmap <D-/> gcgv
 
 " Toggle show invisibles
 nmap <leader>l :set list!<CR>
@@ -93,7 +99,7 @@ map <leader>w <C-w>w
 
 " ,b will load up the buffer explorer
 map <leader>b :BufExplorerHorizontalSplit<CR>
-let g:bufExplorerSplitBelow=1 
+let g:bufExplorerSplitBelow=1
 
 " Setup Command-t shortcut
 map <D-t> <leader>t
