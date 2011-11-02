@@ -7,6 +7,7 @@ endif
 " no vi compatibility
 set nocompatible
 
+
 " load all the bundles
 call pathogen#runtime_append_all_bundles()
 
@@ -16,7 +17,8 @@ syntax on
 " General Settings
 set nowrap
 set hidden
-set list "show invisibles
+" set list "show invisibles
+set nolist
 
 " Tabs
 set tabstop=2 " Use 2 spaces for tabs
@@ -55,9 +57,21 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
+imap qq <ESC>
+imap ^^ <ESC>^i
+imap ¥¥ <ESC>$a
+
+map ¥ $
+
 " map control left and control right to swap the buffer
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
+
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+
 
 " map Command-j to Scroll Down
 map <D-j> <C-d>
@@ -70,8 +84,11 @@ map <S-u> <C-r>
 " set the LEADER key to ,
 let mapleader = ","
 
-" Leader-v reloads the vimrc -- making all changes active (have to save first)
-map <silent> ,v :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
+:noremap ,h :vsp^M^W^W<CR>
+:noremap ,k :split^M^W^W<CR>
+
+" Leader-u reloads the vimrc -- making all changes active (have to save first)
+map <silent> ,u :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
 
 " NERDTree (Command-d / Leader-d)
 map <leader>d :NERDTreeToggle<CR>
@@ -80,6 +97,8 @@ map <leader>n :NERDTree<CR>
 map <D-d> :execute 'NERDTreeToggle ' . getcwd()<CR>
 " navigates nerdtree to the current file
 map <leader><S-d> :NERDTree %:p:h<CR>
+
+map <leader>w :set nowrap!<CR>
 
 " NERD Commenter Sucks balls. Use tComment instead!
 " nmap <D-/> gc
@@ -95,7 +114,7 @@ set listchars=tab:▸\ ,eol:¬
 map <S-w> <C-w>
 
 " ,w will easily switch window focus
-map <leader>w <C-w>w
+map <leader>s <C-w>w
 
 " ,b will load up the buffer explorer
 map <leader>b :BufExplorerHorizontalSplit<CR>
@@ -107,7 +126,7 @@ let g:CommandTMatchWindowAtTop=1
 
 " Set up Ack shortcuts (literal vs nonliteral)
 map <leader>f :Ack -Q 
-map <leader><S-f> :Ack 
+map <leader><S-f> :Ack  
 
 " Setup Command-e to use ctags (Control-])
 map <D-e> <C-]>
