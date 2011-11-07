@@ -9,8 +9,8 @@ cmd+e = 开启ctags
 shift+hjkl = Visual模式选择
 ctrl+hjkl = 窗口切换
 
-,h = 上侧打开新的窗口
-,v = 左侧打开新的窗口 
+,k = 上侧打开新的窗口
+,h = 左侧打开新的窗口 
 ,u = 应用配置
 ,n = 切换NERDTree
 ,s = 切换窗口
