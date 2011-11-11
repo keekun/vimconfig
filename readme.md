@@ -26,7 +26,13 @@ ctrl+hjkl = 窗口切换
 ,ev 水平打开新窗口
 ,et
 
+====
+Vs<tag> 选择并加上tag
+cst<tag> 换一个tag
+
+
 ,__ 加入block注释
+gc 批量注释
 [u 把URL转成URLENCODE
 
 ====

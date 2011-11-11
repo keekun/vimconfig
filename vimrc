@@ -35,7 +35,7 @@ set noswapfile " Do not use swapfiles (they have trouble with large files)
 set wildignore+=*.bak,*.png,*.jpg,*.gif,*.ai,*.jpeg,*.psd,*.swp,*.jar,*.zip,*.gem,.DS_Store,log/**,tmp/**,coverage/**,rdoc/**
 
 " additional support for some file types
-autocmd BufRead *.html.erb set ft=eruby.html
+autocmd BufRead *.html.erb set ft=eruby-rails.html
 autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 set nofoldenable " Fuck code folding...
