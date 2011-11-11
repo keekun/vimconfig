@@ -1,4 +1,4 @@
-colorschem wombat 
+colorschem vividchalk
 
 if has("mac")
     let $PATH = '/opt/local/bin:/opt/local/sbin'.$PATH
@@ -6,7 +6,6 @@ endif
 
 " no vi compatibility
 set nocompatible
-
 
 " load all the bundles
 call pathogen#runtime_append_all_bundles()
@@ -86,6 +85,8 @@ let mapleader = ","
 
 :noremap ,h :vsp^M^W^W<CR>
 :noremap ,k :split^M^W^W<CR>
+:noremap ,r `.
+:noremap ,@ <ESC>:b#<CR>
 
 " Leader-u reloads the vimrc -- making all changes active (have to save first)
 map <silent> ,u :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>:NERDTreeClose<CR>
@@ -106,9 +107,6 @@ map <leader>w :set nowrap!<CR>
 
 " Toggle show invisibles
 nmap <leader>l :set list!<CR>
-
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
 
 " Shift-w maps to Control-W
 map <S-w> <C-w>
