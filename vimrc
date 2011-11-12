@@ -10,6 +10,8 @@ set nocompatible
 " load all the bundles
 call pathogen#runtime_append_all_bundles()
 
+let snips_author = 'Chifung Cheung'
+
 filetype plugin indent on
 syntax on
 
@@ -169,3 +171,37 @@ nmap <leader><S-s> :call Preserve("%s/\\s\\+$//e")<CR>
 " Retab the document (tabs to spaces)
 nmap <silent> <leader><S-t> :retab!<CR>
 
+
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_disable_auto_complete = 1
+
+imap <C-CR> <Plug>(neocomplcache_snippets_expand)
+smap <C-CR> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : "\<C-x>\<C-u>"
+        function! s:check_back_space()"{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1] =~ '\s'
+        endfunction"}}
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>" 
+inoremap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>" 
+
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
