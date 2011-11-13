@@ -5,6 +5,8 @@ cmd+j = 快速上滚
 cmd+k = 快速下滚
 cmd+d = 切换NERDTree
 cmd+e = 开启ctags
+cmd+[ = 减少缩进
+cmd+] = 增加缩进
 
 shift+hjkl = Visual模式选择
 ctrl+hjkl = 窗口切换
@@ -20,6 +22,8 @@ ctrl+hjkl = 窗口切换
 ,t = 快速定位文件
 ,l = 切换可视模式
 ,f = 超级查找模式
+,c = 切换Tagbar 
+,m = 放大、缩小当前窗口
 
 ,ew
 ,es 垂直打开新窗口
@@ -55,3 +59,10 @@ cd 设定此目录为当前目录
 m 菜单
 i 垂直打开文件
 s 水平打开文件
+====
+in Tagbar
+Enter 打开
+Space 详细
+o 展开或合上
+x 放大
+
