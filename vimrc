@@ -1,4 +1,6 @@
 colorschem vividchalk
+set gfn=Monaco:h11
+" set gfn=Monaco:h13
 
 if has("mac")
     let $PATH = '/opt/local/bin:/opt/local/sbin'.$PATH
@@ -37,7 +39,7 @@ set noswapfile " Do not use swapfiles (they have trouble with large files)
 set wildignore+=*.bak,*.png,*.jpg,*.gif,*.ai,*.jpeg,*.psd,*.swp,*.jar,*.zip,*.gem,.DS_Store,log/**,tmp/**,coverage/**,rdoc/**
 
 " additional support for some file types
-autocmd BufRead *.html.erb set ft=eruby.html
+autocmd BufRead *.html.erb set ft=eruby.html.eruby-rails
 autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 set nofoldenable " Fuck code folding...
@@ -58,6 +60,7 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
+" Only for Japanese Keyboard
 imap qq <ESC>
 imap ^^ <ESC>^i
 imap ¥¥ <ESC>$a
@@ -196,15 +199,25 @@ function! ToggleMaxWins()
   endif
 endfunction
 nnoremap <Leader>m :call ToggleMaxWins()<CR>
-" 
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_enable_smart_case = 1
-" let g:neocomplcache_enable_camel_case_completion = 1
-" let g:neocomplcache_enable_underbar_completion = 1
-" let g:neocomplcache_min_syntax_length = 3
+
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
 " let g:neocomplcache_disable_auto_complete = 1
-" inoremap <expr><C-n> pumvisible() ? "\\<C-n>" : <SID>check_back_space() ? "\\<C-n>" : "\\<C-x>\\<C-u>"
-" function! s:check_back_space()"{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1] =~ '\\s'
-" endfunction"}}
+
+imap <C-CR> <C-y><Plug>(neocomplcache_snippets_expand)
+smap <C-CR> <C-y><Plug>(neocomplcache_snippets_expand)
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><TAB> pumvisible() ? "\\<C-n>" : <SID>check_back_space() ? "\\<TAB>" : "\\<C-x>\\<C-u>"
+"         function! s:check_back_space()"{{{
+"         let col = col('.') - 1
+"         return !col || getline('.')[col - 1] =~ '\\s'
+"         endfunction"}}
+" inoremap <expr><S-TAB>  pumvisible() ? "\\<C-p>" : "\\<TAB>"
+" inoremap <expr><CR> neocomplcache#smart_close_popup()."\<CR>"
+inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-j>" 
+inoremap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-k>" 
+
