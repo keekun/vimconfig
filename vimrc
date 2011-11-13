@@ -37,7 +37,7 @@ set noswapfile " Do not use swapfiles (they have trouble with large files)
 set wildignore+=*.bak,*.png,*.jpg,*.gif,*.ai,*.jpeg,*.psd,*.swp,*.jar,*.zip,*.gem,.DS_Store,log/**,tmp/**,coverage/**,rdoc/**
 
 " additional support for some file types
-autocmd BufRead *.html.erb set ft=eruby-rails.html
+autocmd BufRead *.html.erb set ft=eruby.html
 autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 set nofoldenable " Fuck code folding...
@@ -85,8 +85,8 @@ map <S-u> <C-r>
 " set the LEADER key to ,
 let mapleader = ","
 
-:noremap ,h :vsp^M^W^W<CR>
-:noremap ,k :split^M^W^W<CR>
+:noremap ,h :vsp<CR>
+:noremap ,k :split<CR>
 :noremap ,r `.
 :noremap ,@ <ESC>:b#<CR>
 
@@ -95,6 +95,7 @@ map <silent> ,u :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloa
 
 " NERDTree (Command-d / Leader-d)
 map <leader>d :NERDTreeToggle<CR>
+map <leader>c :TagbarToggle<CR>
 " map <D-d> :NERDTreeToggle<CR>
 map <leader>n :NERDTree<CR>
 map <D-d> :execute 'NERDTreeToggle ' . getcwd()<CR>
@@ -171,6 +172,7 @@ nmap <leader><S-s> :call Preserve("%s/\\s\\+$//e")<CR>
 " Retab the document (tabs to spaces)
 nmap <silent> <leader><S-t> :retab!<CR>
 
+<<<<<<< HEAD
 
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
@@ -205,3 +207,34 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+=======
+function! ToggleMaxWins()
+  if exists('g:windowMax')
+    au! maxCurrWin
+    wincmd =
+    unlet g:windowMax
+  else
+    augroup maxCurrWin
+        " au BufEnter * wincmd _ | wincmd |
+        "
+        " only max it vertically
+        au! WinEnter * wincmd _
+    augroup END
+    do maxCurrWin WinEnter
+    let g:windowMax=1
+  endif
+endfunction
+nnoremap <Leader>m :call ToggleMaxWins()<CR>
+" 
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_smart_case = 1
+" let g:neocomplcache_enable_camel_case_completion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
+" let g:neocomplcache_min_syntax_length = 3
+" let g:neocomplcache_disable_auto_complete = 1
+" inoremap <expr><C-n> pumvisible() ? "\\<C-n>" : <SID>check_back_space() ? "\\<C-n>" : "\\<C-x>\\<C-u>"
+" function! s:check_back_space()"{{{
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1] =~ '\\s'
+" endfunction"}}
+>>>>>>> master
